@@ -1,0 +1,12 @@
+# Ignore all build output folders
+[Bb]in/
+[Oo]bj/
+bin/Debug/
+obj/Debug/
+
+# Ignore Visual Studio personal settings and hidden folders
+.vs/
+.vscode/
+*.user
+*.suo
+*.shellbuffer
