@@ -4,38 +4,25 @@ using ArribaEats.Models;
 
 namespace ArribaEats.Managers
 {
-    /// <summary>
-    /// Manages restaurant ratings and reviews.
-    /// Implements the Singleton pattern to ensure a single instance.
-    /// </summary>
+    // Manages restaurant ratings and reviews.
+    // Implements the Singleton pattern to ensure a single instance.
     public class RatingManager
     {
-        /// <summary>
-        /// Gets the singleton instance of RatingManager.
-        /// </summary>
+        // Gets the singleton instance of RatingManager.
         private static RatingManager _instance;
         public static RatingManager Instance => _instance ??= new RatingManager();
 
-        /// <summary>
-        /// Gets the list of all submitted ratings.
-        /// </summary>
+        // Gets the list of all submitted ratings.s
         private readonly List<Rating> ratings = new();
 
-        /// <summary>
-        /// Adds a new rating and updates the restaurant's rating display.
-        /// </summary>
-        /// <param name="rating">The rating to add.</param>
+        // Adds a new rating and updates the restaurant's rating display.
         public void AddRating(Rating rating)
         {
             ratings.Add(rating);
             UserManager.Instance.UpdateAllRatingDisplays();
         }
 
-        /// <summary>
-        /// Retrieves all ratings for a specific restaurant.
-        /// </summary>
-        /// <param name="restaurantName">The name of the restaurant.</param>
-        /// <returns>A list of all ratings for the specified restaurant.</returns>
+        // Retrieves all ratings for a specific restaurant.
         public List<Rating> GetRatingsForRestaurant(string restaurantName) =>
             ratings.Where(r => r.RestaurantName == restaurantName).ToList();
     }

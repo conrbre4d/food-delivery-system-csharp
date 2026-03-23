@@ -3,21 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace ArribaEats.Models.Validation
 {
-    /// <summary>
     // Represents and validates email addresses.
-    /// </summary>
     public class Email
     {
-        /// <summary>
-        /// Gets the email address value.
-        /// </summary>
-        public string Value { get; }
+        public string Value { get; } // Gets the email address value.
 
-        /// <summary>
-        /// Initializes a new instance of the Email class.
-        /// </summary>
-        /// <param name="address">The email address to validate.</param>
-        /// <exception cref="ArgumentException">Thrown when the email address is invalid.</exception>
+        // Initializes a new instance of the Email class.
         public Email(string address)
         {
             if (!IsValid(address))
@@ -25,11 +16,7 @@ namespace ArribaEats.Models.Validation
             Value = address;
         }
 
-        /// <summary>
-        /// Validates whether a string is a valid email address.
-        /// </summary>
-        /// <param name="email">The email address to validate.</param>
-        /// <returns>True if valid, false otherwise.</returns>
+        // Validates whether a string is a valid email address.
         public static bool IsValid(string email)
         {
             if (string.IsNullOrWhiteSpace(email))

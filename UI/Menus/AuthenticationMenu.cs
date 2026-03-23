@@ -9,21 +9,16 @@ using ArribaEats.Utilities;
 
 namespace ArribaEats.UI.Menus
 {
-    /// <summary>
-    /// Handles user authentication and registration for the Arriba Eats system.
-    /// </summary>
+    // Handles user authentication and registration for the Arriba Eats system.
     public class AuthenticationMenu
     {
-        /// <summary>
-        /// Gets the UserManager instance.
-        /// </summary>
+        // Gets the UserManager instance.
         private UserManager userManager = UserManager.Instance;
 
-        /// <summary>
-        /// Displays the authentication menu.
-        /// </summary>
+        // Displays the authentication menu.
         public void Show()
         {
+            WriteLine("");
             WriteLine("Welcome to Arriba Eats!");
 
             bool running = true;
@@ -56,9 +51,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Handles user login.
-        /// </summary>
+        // Handles user login.
         private void Login()
         {
             WriteLine();
@@ -79,10 +72,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Routes the user to the appropriate menu based on their type.
-        /// </summary>
-        /// <param name="user">The logged-in user.</param>
+        // Routes the user to the appropriate menu based on their type.
         private void RouteUserToMenu(User user)
         {
             switch (user)
@@ -102,9 +92,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Handles user registration.
-        /// </summary>
+        // Handles user registration.
         private void Register()
         {
             WriteLine();
@@ -135,9 +123,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Registers a new customer user.
-        /// </summary>
+        // Registers a new customer user.
         private void RegisterCustomer()
         {
             string name = GetValidName();
@@ -151,9 +137,7 @@ namespace ArribaEats.UI.Menus
             WriteLine($"You have been successfully registered as a customer, {name}!");
         }
 
-        /// <summary>
-        /// Registers a new deliverer user.
-        /// </summary>
+        // Registers a new deliverer user.
         private void RegisterDeliverer()
         {
             string name = GetValidName();
@@ -167,9 +151,7 @@ namespace ArribaEats.UI.Menus
             WriteLine($"You have been successfully registered as a deliverer, {name}!");
         }
 
-        /// <summary>
-        /// Registers a new client (restaurant owner) user.
-        /// </summary>
+        // Registers a new client (restaurant owner) user.
         private void RegisterClient()
         {
             string name = GetValidName();
@@ -185,10 +167,7 @@ namespace ArribaEats.UI.Menus
             WriteLine($"You have been successfully registered as a restaurant owner, {name}!");
         }
 
-        /// <summary>
-        /// Gets a valid user name from input.
-        /// </summary>
-        /// <returns>A valid name containing only letters, spaces, hyphens, and apostrophes.</returns>
+        // Gets a valid user name from input.
         private string GetValidName()
         {
             string name;
@@ -205,10 +184,7 @@ namespace ArribaEats.UI.Menus
             return name;
         }
 
-        /// <summary>
-        /// Gets a valid age from input.
-        /// </summary>
-        /// <returns>A valid age between 18 and 100.</returns>
+        // Gets a valid age from input.
         private int GetValidAge()
         {
             int age;
@@ -225,10 +201,7 @@ namespace ArribaEats.UI.Menus
             return age;
         }
 
-        /// <summary>
-        /// Gets a valid email address from input.
-        /// </summary>
-        /// <returns>A valid, unique email address.</returns>
+        // Gets a valid email address from input.
         private string GetValidEmail()
         {
             string email;
@@ -251,10 +224,7 @@ namespace ArribaEats.UI.Menus
             return email;
         }
 
-        /// <summary>
-        /// Gets a valid phone number from input.
-        /// </summary>
-        /// <returns>A valid 10-digit phone number starting with 0.</returns>
+        // Gets a valid phone number from input.
         private string GetValidPhone()
         {
             string phone;
@@ -272,10 +242,8 @@ namespace ArribaEats.UI.Menus
             return phone;
         }
 
-        /// <summary>
-        /// Gets a valid password from input.
-        /// </summary>
-        /// <returns>A valid password meeting all requirements.</returns>
+        // Gets a valid password from input.
+
         private string GetValidPassword()
         {
             string password;
@@ -312,11 +280,7 @@ namespace ArribaEats.UI.Menus
             return password;
         }
 
-        /// <summary>
-        /// Gets a valid location from input.
-        /// </summary>
-        /// <param name="userType">The type of user (for context in messages).</param>
-        /// <returns>A Location object.</returns>
+        // Gets a valid location from input.
         private Location GetValidLocation(string userType)
         {
             string locationInput;
@@ -338,10 +302,7 @@ namespace ArribaEats.UI.Menus
             return new Location(x, y);
         }
 
-        /// <summary>
-        /// Gets a valid license plate from input.
-        /// </summary>
-        /// <returns>A valid LicensePlate object.</returns>
+        // Gets a valid license plate from input.
         private LicensePlate GetValidLicensePlate()
         {
             LicensePlate plate;
@@ -363,10 +324,7 @@ namespace ArribaEats.UI.Menus
             return plate;
         }
 
-        /// <summary>
-        /// Gets a valid restaurant name from input.
-        /// </summary>
-        /// <returns>A valid restaurant name.</returns>
+        // Gets a valid restaurant name from input.
         private string GetValidRestaurantName()
         {
             string name;
@@ -383,10 +341,7 @@ namespace ArribaEats.UI.Menus
             return name;
         }
 
-        /// <summary>
-        /// Gets a valid restaurant style from input.
-        /// </summary>
-        /// <returns>One of the supported restaurant styles.</returns>
+        // Gets a valid restaurant style from input.
         private string GetValidRestaurantStyle()
         {
             string[] styles = { "Italian", "French", "Chinese", "Japanese", "American", "Australian" };
@@ -412,31 +367,19 @@ namespace ArribaEats.UI.Menus
             return styles[choice - 1];
         }
 
-        /// <summary>
-        /// Validates whether a name is valid.
-        /// </summary>
-        /// <param name="name">The name to validate.</param>
-        /// <returns>True if valid, false otherwise.</returns>
+        // Validates whether a name is valid.
         private bool IsValidName(string name)
         {
             return Regex.IsMatch(name, @"^[A-Za-z'\- ]+$");
         }
 
-        /// <summary>
-        /// Validates whether a phone number is valid.
-        /// </summary>
-        /// <param name="phone">The phone number to validate.</param>
-        /// <returns>True if valid (10 digits starting with 0), false otherwise.</returns>
+        // Validates whether a phone number is valid.
         private bool IsValidPhone(string phone)
         {
             return phone.Length == 10 && phone.All(char.IsDigit) && phone.StartsWith("0");
         }
 
-        /// <summary>
-        /// Validates the format of a location string.
-        /// </summary>
-        /// <param name="input">The location input to validate.</param>
-        /// <returns>True if valid format, false otherwise.</returns>
+        // Validates the format of a location string.
         private bool IsValidLocationFormat(string input)
         {
             if (string.IsNullOrWhiteSpace(input)) return false;

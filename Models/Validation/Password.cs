@@ -3,21 +3,12 @@ using System.Linq;
 
 namespace ArribaEats.Models.Validation
 {
-    /// <summary>
-    /// Represents and validates passwords.
-    /// </summary>
+    // Represents and validates passwords.
     public class Password
     {
-        /// <summary>
-        /// Gets the password value.
-        /// </summary>
-        public string Value { get; }
+        public string Value { get; } // Gets the password value.
 
-        /// <summary>
-        /// Initializes a new instance of the Password class.
-        /// </summary>
-        /// <param name="password">The password to validate.</param>
-        /// <exception cref="ArgumentException">Thrown when the password does not meet requirements.</exception>
+        // Initializes a new instance of the Password class.
         public Password(string password)
         {
             if (!IsValid(password))
@@ -25,15 +16,11 @@ namespace ArribaEats.Models.Validation
             Value = password;
         }
 
-        /// <summary>
-        /// Validates whether a password meets requirements:
-        /// - At least 8 characters long
-        /// - Contains at least one digit
-        /// - Contains at least one lowercase letter
-        /// - Contains at least one uppercase letter
-        /// </summary>
-        /// <param name="password">The password to validate.</param>
-        /// <returns>True if valid, false otherwise.</returns>
+        // Validates whether a password meets requirements:
+        // - At least 8 characters long
+        // - Contains at least one digit
+        // - Contains at least one lowercase letter
+        // - Contains at least one uppercase letter
         public static bool IsValid(string password)
         {
             if (string.IsNullOrWhiteSpace(password) || password.Length < 8)
@@ -46,9 +33,7 @@ namespace ArribaEats.Models.Validation
             return hasDigit && hasLower && hasUpper;
         }
 
-        /// <summary>
-        /// Displays the password requirements.
-        /// </summary>
+        // Displays the password requirements.
         public static void DisplayRequirements()
         {
             Console.WriteLine("Your password must:");

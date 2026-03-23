@@ -8,29 +8,20 @@ using ArribaEats.Utilities;
 
 namespace ArribaEats.UI.Menus
 {
-    /// <summary>
-    /// Provides the menu interface for customer users.
-    /// Allows customers to browse restaurants, place orders, check order status, and rate restaurants.
-    /// </summary>
+    // Provides the menu interface for customer users.
+    // Allows customers to browse restaurants, place orders, check order status, and rate restaurants.
     public class CustomerMenu
     {
-        /// <summary>
-        /// Gets the customer user.
-        /// </summary>
+        // Gets the customer user.
         private Customer customer;
 
-        /// <summary>
-        /// Initializes a new instance of the CustomerMenu class.
-        /// </summary>
-        /// <param name="user">The customer user.</param>
+        // Initializes a new instance of the CustomerMenu class.
         public CustomerMenu(User user)
         {
             this.customer = user as Customer;
         }
 
-        /// <summary>
-        /// Displays the customer menu.
-        /// </summary>
+        // Displays the customer menu.
         public void Show()
         {
             WriteLine($"Welcome back, {customer.Name}!");
@@ -73,9 +64,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
         /// Displays the customer's user information and order statistics.
-        /// </summary>
         private void DisplayUserInfo()
         {
             TextPrinter.DisplayBaseUserInfo(customer);
@@ -88,9 +77,7 @@ namespace ArribaEats.UI.Menus
             WriteLine($"You've made {count} order(s) and spent a total of ${total:0.00} here.");
         }
 
-        /// <summary>
-        /// Displays the restaurant sorting options.
-        /// </summary>
+        // Displays the restaurant sorting options.
         private void SelectRestaurants()
         {
             bool running = true;
@@ -137,18 +124,14 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Sorts restaurants alphabetically by name.
-        /// </summary>
+        // Sorts restaurants alphabetically by name.
         private void SortAlphabetically()
         {
             var clients = UserManager.Instance.GetSortedClients();
             DisplayRestaurants(clients);
         }
 
-        /// <summary>
-        /// Sorts restaurants by distance from the customer's location.
-        /// </summary>
+        // Sorts restaurants by distance from the customer's location.
         private void SortDistance()
         {
             var clients = UserManager.Instance.GetSortedClients()
@@ -158,9 +141,7 @@ namespace ArribaEats.UI.Menus
             DisplayRestaurants(clients);
         }
 
-        /// <summary>
-        /// Sorts restaurants by cuisine style.
-        /// </summary>
+        // Sorts restaurants by cuisine style.
         private void SortStyle()
         {
             var styleOrder = new List<string> { "Italian", "French", "Chinese", "Japanese", "American", "Australian" };
@@ -172,9 +153,7 @@ namespace ArribaEats.UI.Menus
             DisplayRestaurants(clients);
         }
 
-        /// <summary>
-        /// Sorts restaurants by average customer rating.
-        /// </summary>
+        // Sorts restaurants by average customer rating.
         private void SortAverageRating()
         {
             UserManager.Instance.UpdateAllRatingDisplays();
@@ -186,10 +165,7 @@ namespace ArribaEats.UI.Menus
             DisplayRestaurants(clients);
         }
 
-        /// <summary>
-        /// Displays a list of restaurants for the customer to select from.
-        /// </summary>
-        /// <param name="clients">The list of clients (restaurants) to display.</param>
+        // Displays a list of restaurants for the customer to select from.
         private void DisplayRestaurants(List<Client> clients)
         {
             if (!clients.Any())
@@ -228,10 +204,7 @@ namespace ArribaEats.UI.Menus
             RestaurantInteractionMenu(selectedRestaurant);
         }
 
-        /// <summary>
-        /// Displays the restaurant interaction menu (menu browsing and reviews).
-        /// </summary>
-        /// <param name="restaurant">The selected restaurant.</param>
+        // Displays the restaurant interaction menu (menu browsing and reviews).
         private void RestaurantInteractionMenu(Client restaurant)
         {
             WriteLine($"\nPlacing order from {restaurant.RestaurantName}.");
@@ -262,10 +235,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Handles the order placement process.
-        /// </summary>
-        /// <param name="restaurant">The restaurant to order from.</param>
+        // Handles the order placement process.
         private void PlaceOrder(Client restaurant)
         {
             decimal total = 0;
@@ -324,10 +294,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Gets a valid order quantity from the customer.
-        /// </summary>
-        /// <returns>The quantity (0 to cancel).</returns>
+        // Gets a valid order quantity from the customer.
         private int GetOrderQuantity()
         {
             while (true)
@@ -342,10 +309,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Displays all reviews for a restaurant.
-        /// </summary>
-        /// <param name="restaurantName">The name of the restaurant.</param>
+        // Displays all reviews for a restaurant.
         private void ShowRestaurantReviews(string restaurantName)
         {
             var reviews = RatingManager.Instance.GetRatingsForRestaurant(restaurantName);
@@ -361,10 +325,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Displays a single review.
-        /// </summary>
-        /// <param name="review">The review to display.</param>
+        // Displays a single review.
         private void DisplayReview(Rating review)
         {
             var reviewer = UserManager.Instance.Users.FirstOrDefault(u => u.Email == review.CustomerEmail);
@@ -373,9 +334,8 @@ namespace ArribaEats.UI.Menus
             WriteLine($"Comment: {review.Comment}\n");
         }
 
-        /// <summary>
-        /// Displays the status of all orders placed by the customer.
-        /// </summary>
+
+        // Displays the status of all orders placed by the customer.
         private void ShowOrderStatus()
         {
             var orders = OrderManager.Instance.GetOrdersForUser(customer.Email)
@@ -394,10 +354,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Displays details for a single order.
-        /// </summary>
-        /// <param name="order">The order to display.</param>
+        // Displays details for a single order.
         private void DisplayOrderStatus(Order order)
         {
             string status = GetOrderStatus(order);
@@ -412,11 +369,7 @@ namespace ArribaEats.UI.Menus
             WriteLine();
         }
 
-        /// <summary>
-        /// Gets the current status of an order.
-        /// </summary>
-        /// <param name="order">The order to check.</param>
-        /// <returns>The order status as a string.</returns>
+        // Gets the current status of an order.
         private string GetOrderStatus(Order order)
         {
             bool hasDeliverer = !string.IsNullOrWhiteSpace(order.DelivererName);
@@ -431,10 +384,7 @@ namespace ArribaEats.UI.Menus
                 return "Ordered";
         }
 
-        /// <summary>
-        /// Displays all items in an order.
-        /// </summary>
-        /// <param name="order">The order to display items for.</param>
+        // Displays all items in an order.
         private void DisplayOrderItems(Order order)
         {
             var groupedItems = order.Items
@@ -447,9 +397,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Handles the restaurant rating process.
-        /// </summary>
+        // Handles the restaurant rating process.
         private void RateRestaurant()
         {
             var unratedOrders = GetUnratedOrders();
@@ -472,10 +420,7 @@ namespace ArribaEats.UI.Menus
             SubmitRating(selectedOrder, rating, comment);
         }
 
-        /// <summary>
-        /// Gets all delivered orders that haven't been rated.
-        /// </summary>
-        /// <returns>A list of unrated orders.</returns>
+        // Gets all delivered orders that haven't been rated.
         private List<Order> GetUnratedOrders()
         {
             return OrderManager.Instance.GetOrdersForUser(customer.Email)
@@ -483,11 +428,7 @@ namespace ArribaEats.UI.Menus
                 .ToList();
         }
 
-        /// <summary>
-        /// Allows the customer to select which order to rate.
-        /// </summary>
-        /// <param name="orders">The available orders to rate.</param>
-        /// <returns>The selected order, or null if the user cancels.</returns>
+        // Allows the customer to select which order to rate.
         private Order SelectOrderToRate(List<Order> orders)
         {
             WriteLine("Select a previous order to rate the restaurant it came from:");
@@ -514,10 +455,7 @@ namespace ArribaEats.UI.Menus
             return orders[choice - 1];
         }
 
-        /// <summary>
-        /// Gets a rating (1-5) from the user.
-        /// </summary>
-        /// <returns>A rating between 1 and 5, or 0 to cancel.</returns>
+        // Gets a rating (1-5) from the user.
         private int GetRatingFromUser()
         {
             while (true)
@@ -532,22 +470,14 @@ namespace ArribaEats.UI.Menus
             }
         }
 
-        /// <summary>
-        /// Gets a comment from the user to accompany the rating.
-        /// </summary>
-        /// <returns>The comment text.</returns>
+        // Gets a comment from the user to accompany the rating.
         private string GetCommentFromUser()
         {
             WriteLine("Please enter a comment to accompany this rating:");
             return ReadLine();
         }
 
-        /// <summary>
-        /// Submits a rating for a restaurant.
-        /// </summary>
-        /// <param name="order">The order being rated.</param>
-        /// <param name="stars">The rating (1-5).</param>
-        /// <param name="comment">The comment to accompany the rating.</param>
+        // Submits a rating for a restaurant.
         private void SubmitRating(Order order, int stars, string comment)
         {
             var newRating = new Rating

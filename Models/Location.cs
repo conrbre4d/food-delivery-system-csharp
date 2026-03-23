@@ -2,37 +2,20 @@ using System;
 
 namespace ArribaEats.Models
 {
-    /// <summary>
-    /// Represents a geographic location with coordinates and distance calculations.
-    /// </summary>
+    // Represents a geographic location with coordinates and distance calculations.
     public class Location
     {
-        /// <summary>
-        /// Gets the X coordinate.
-        /// </summary>
-        public int X { get; }
+        public int X { get; } // Gets the X coordinate.
+        public int Y { get; } // Gets the Y coordinate.
 
-        /// <summary>
-        /// Gets the Y coordinate.
-        /// </summary>
-        public int Y { get; }
-
-        /// <summary>
-        /// Initializes a new instance of the Location class.
-        /// </summary>
-        /// <param name="x">The X coordinate.</param>
-        /// <param name="y">The Y coordinate.</param>
+        // Initializes a new instance of the Location class.
         public Location(int x, int y)
         {
             X = x;
             Y = y;
         }
 
-        /// <summary>
-        /// Calculates the Manhattan distance between this location and another location.
-        /// </summary>
-        /// <param name="other">The other location to calculate distance to.</param>
-        /// <returns>The Manhattan distance between the two locations.</returns>
+        // Calculates the Manhattan distance between this location and another location.
         public int DistanceTo(Location other)
         {
             if (other == null)

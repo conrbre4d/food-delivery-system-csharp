@@ -8,15 +8,19 @@ using ArribaEats.Utilities;
 
 namespace ArribaEats.UI.Menus
 {
+    // Handles the restaurant owner's interaction with the system, including menu and order management.
     public class ClientMenu
     {
+        // The currently logged-in client.
         private Client user;
 
+        // Initializes a new instance of the ClientMenu class with the specified user.
         public ClientMenu(Client user)
         {
             this.user = user;
         }
 
+        // Displays the main client menu and handles navigation based on user input.
         public void Show()
         {
             WriteLine($"Welcome back, {user.Name}!");
@@ -70,6 +74,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
+        // Allows the client to add a new menu item to their restaurant.
         private void AddItem()
         {
             WriteLine("This is your restaurant's current menu:");
@@ -105,6 +110,7 @@ namespace ArribaEats.UI.Menus
             WriteLine($"Successfully added {name} ({price:C2}) to menu.");
         }
 
+        // Displays all current, undelivered orders for the client's restaurant.
         private void ShowCurrentOrders()
         {
             var orders = OrderManager.Instance.Orders
@@ -162,6 +168,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
+        // Marks a specific pending order as being prepared in the kitchen.
         private void StartCookingOrder()
         {
             var ordered = OrderManager.Instance.Orders
@@ -208,6 +215,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
+        // Marks a cooking order as completed and ready for courier pickup.
         private void FinishCookingOrder()
         {
             var orders = OrderManager.Instance.Orders
@@ -261,6 +269,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
+        // Manages the physical handover of prepared orders to couriers who have arrived at the location.
         private void HandleDeliverers()
         {
             var orders = OrderManager.Instance.Orders

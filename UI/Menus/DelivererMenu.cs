@@ -8,17 +8,25 @@ using ArribaEats.Utilities;
 
 namespace ArribaEats.UI.Menus
 {
+    // Handles the courier's interaction with the system, including order selection and delivery tracking.
     public class DelivererMenu
     {
+        // The currently logged-in deliverer.
         private Deliverer user;
+        
+        // The order currently assigned to the deliverer.
         private Order currentOrder;
+        
+        // Tracks whether the deliverer has signaled arrival at the restaurant.
         private bool atRestaurant = false;
 
+        // Initializes a new instance of the DelivererMenu class for the specified deliverer.
         public DelivererMenu(Deliverer user)
         {
             this.user = user;
         }
 
+        // Displays the deliverer menu and manages user navigation and order state.
         public void Show()
         {
             currentOrder = UserManager.Instance.GetCurrentOrderForDeliverer(user.Email);
@@ -63,6 +71,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
+        // Displays the deliverer's account details and information about their active delivery.
         private void DisplayUserInfo()
         {
             TextPrinter.DisplayBaseUserInfo(user);
@@ -79,6 +88,7 @@ namespace ArribaEats.UI.Menus
             }
         }
 
+        // Lists all unassigned orders and allows the deliverer to accept one based on distance.
         private void ListOrdersToDeliver()
         {
             if (currentOrder != null)
@@ -100,12 +110,6 @@ namespace ArribaEats.UI.Menus
                     locInput = null;
                 }
             } while (locInput == null);
-
-            if (currentOrder != null)
-            {
-                WriteLine("You have already selected an order for delivery.");
-                return;
-            }
 
             var availableOrders = OrderManager.Instance.Orders
                 .Where(o => string.IsNullOrWhiteSpace(o.DelivererName) && !o.Delivered)
@@ -153,6 +157,7 @@ namespace ArribaEats.UI.Menus
             WriteLine($"Thanks for accepting the order. Please head to {selectedRestaurant.RestaurantName} at {selectedRestaurant.Location.X},{selectedRestaurant.Location.Y} to pick it up.");
         }
 
+        // Signals to the restaurant that the deliverer has arrived for pickup.
         private void ArrivedAtRestaurant()
         {
             if (currentOrder == null)
@@ -197,6 +202,7 @@ namespace ArribaEats.UI.Menus
             atRestaurant = true;
         }
 
+        // Updates the order status to delivered and clears the current assigned order.
         private void CompleteDelivery()
         {
             if (currentOrder == null)
