@@ -1,8 +1,8 @@
 # ArribaEats - C# Food Delivery Management System
 
-![Framework](https://img.shields.io/badge/Framework-.NET%209.0-blue)
-![Language](https://img.shields.io/badge/Language-C%23-green)
-![Status](https://img.shields.io/badge/Status-In%20Development-orange)
+![Project Status](https://img.shields.io/badge/Status-Finished-brightgreen)
+![Language](https://img.shields.io/badge/Language-C%23-blue)
+![Platform](https://img.shields.io/badge/.NET-9.0-purple)
 
 A robust, console-based food delivery ecosystem designed to handle real-time interactions between **Customers**, **Restaurants (Clients)**, and **Deliverers**. This project demonstrates core Object-Oriented Programming (OOP) principles and efficient state management in C#.
 
